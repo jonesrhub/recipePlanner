@@ -1,0 +1,140 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe Display</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
+</head>
+<body>
+
+<script th:inline="javascript">
+
+function display (param) {
+    var input= $("#"+param);
+
+    if($(input).css('display') === 'none')
+    {
+        $(input).css('display', 'block');
+    } else {
+        $(input).css('display', 'none');
+    }
+
+}
+
+</script>
+<div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <section id="container" class="pricing-table1">
+                <div class="section-padding">
+                    <div class="container">
+                        <div class="row margin">
+                            <div class="div" th:with="recipeList=${recipes.getListOfRecipes()}">
+                                <div th:if="${!recipeList.isEmpty()}">
+                                    <th:block th:each="recipe , iterStatus : ${recipeList}">
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <ul class="list-group">
+                                                <li class="header" align="center" th:text="${recipe.recipeName}"></li>
+                                                <li class="maincontent">
+                                                    <sup >
+                                                        <a th:id="${recipe.recipeName}" th:href="'javascript:display(\''+ ${iterStatus.index} +'\');'">
+                                                            <img class="recipeimg" th:src="@{${recipe.getImageAbsUrl()}}"/>
+                                                        </a>
+                                                    </sup>
+                                                </li>
+                                                <div th:id="${iterStatus.index}" style="display:none;">
+                                                    <form th:action="@{/recipes/removeRecipeById}" method="post" >
+                                                        <input type="hidden" name="recipeId" th:value="${recipe.recipeId}" />
+                                                        <input type="submit" value="Remove Recipe"/>
+                                                    </form>
+                                                <li class="maincontent">
+                                                    <th:block th:each="ingredient : ${recipe.getRecipeIngredientList().getIngredients()}">
+                                                    <div class="row">
+                                                        <div class="col-8 col-sm-6">
+                                                            <p th:text="${ingredient.itemName}"/>
+                                                        </div>
+                                                        <div class="col-4 col-sm-6">
+                                                            <i th:text="${ingredient.itemAmount.getAmountString()}"></i>
+                                                            <i th:text="${ingredient.itemAmount.units}"/>
+                                                        </div>
+                                                    </div>
+                                                    </th:block>
+                                                </li>
+                                                <li class="maincontent">
+                                                    <ul class="list-group">
+                                                        <div class="blog-details">
+                                                            <th:block th:each="step : ${recipe.getRecipeSteps()}">
+                                                                <li  th:text="${step}"></li>
+                                                            </th:block>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </th:block>
+                                </div>
+                              <div class="maincontent" th:if="${recipeList.isEmpty()}">
+                                <div><h2>No Recipes to Display!</h2></div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+<div class="container">
+    <div class="div" th:with="shoppingList=${shoppingList}">
+        <li class="maincontent">
+            <div th:if="${!shoppingList.isEmpty()}">
+                <h2 class="header">Shopping List</h2>
+                <th:block th:each="ingredient : ${shoppingList}">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="single-content text-center">
+                                <div class="item-text">
+                                    <i th:text="${ingredient.itemName}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="single-content text-center">
+                                <div class="item-text">
+                                    <i th:text="${ingredient.itemAmount.getAmountString()}"></i>
+                                    <i th:text="${ingredient.itemAmount.units}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="single-content text-center">
+                                <div class="item-text">
+                                    <i th:text="${ingredient.category.getStringMeaning()}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <!--<div th:fragment="${shoppingList.isEmpty()}">-->
+                <!--<div><h2>Nothing in the shopping list :( !</h2></div>-->
+            <!--</div>-->
+        </li>
+        <div>
+            <form action="/RecipePlanner.html">
+                <input type="submit" value="Return to Add More Recipes"/>
+            </form>
+        </div>
+        <div>
+            <form action="/exportIngredientsToFile">
+                <input type="export" value="Export to file"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

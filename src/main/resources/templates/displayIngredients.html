@@ -1,0 +1,91 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe Display</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="div" th:with="recipeList=${recipes.getListOfRecipes()}">
+    <div  th:if="${!recipeList.isEmpty()}">
+    <table class="tableformat">
+        <th:block th:each="recipe : ${recipeList}">
+            <th align="center" colspan="2" th:text="${recipe.recipeName}"></th>
+            <div class="row">
+                <div class="column">
+                    <img class="recipeimg" th:src="@{${recipe.getImageAbsUrl()}}"  onclick="openImg(this);"/>
+                </div>
+            </div>
+            <tr>
+                <th>Item</th>
+                <th>Amount</th>
+                <!--<th>Steps</th>-->
+            </tr>
+            <th:block th:each="ingredient : ${recipe.getRecipeIngredientList().getIngredients()}">
+                <tr>
+                    <td  align="center" class="cellpadding" th:text="${ingredient.itemName}"></td>
+                    <td  align="center" class="cellpadding" th:text="${ingredient.itemAmount}"></td>
+                </tr>
+            </th:block>
+        </th:block>
+        <!--<output hidden="true" th:text="${result}"/>-->
+        <table class="stepbysteptable">
+            <tr>
+                <th>Steps</th>
+            </tr>
+            <th:block th:each="recipe : ${recipeList}">
+                <th:block th:each="step : ${recipe.getRecipeSteps()}">
+                    <tr>
+                        <td align="center" class="cellpadding" th:text="${step}"></td>
+                    </tr>
+                </th:block>
+            </th:block>
+        </table>
+    </table>
+        <a class="links" href="/index.html">Add More Ingredients</a>
+    </div>
+</div>
+
+<div class="div" th:with="recipeList=${recipes.getListOfRecipes()}">-->
+    <!--<div  th:if="${!recipeList.isEmpty()}">-->
+    <!--<table class="tableformat">-->
+    <!--<th:block th:each="recipe : ${recipeList}">-->
+    <!--<th:block>-->
+    <!--<div class="row">-->
+    <!--<div class="column">-->
+    <!--<img class="recipeimg" th:src="@{${recipe.getImageAbsUrl()}}"  onclick="openImg(this);"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<th align="center" colspan="2" th:text="${recipe.recipeName}"></th>-->
+    <!--<tr>-->
+    <!--<th>Item</th>-->
+    <!--<th>Amount</th>-->
+    <!--&lt;!&ndash;<th>Steps</th>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--<th:block th:each="ingredient : ${recipe.getRecipeIngredientList().getIngredients()}">-->
+    <!--<tr>-->
+    <!--<td  align="center" class="cellpadding" th:text="${ingredient.itemName}"></td>-->
+    <!--<td  align="center" class="cellpadding" th:text="${ingredient.itemAmount}"></td>-->
+    <!--</tr>-->
+    <!--</th:block>-->
+    <!--</th:block>-->
+    <!--&lt;!&ndash;<output hidden="true" th:text="${result}"/>&ndash;&gt;-->
+    <!--<table class="stepbysteptable">-->
+    <!--<tr>-->
+    <!--<th>Steps</th>-->
+    <!--</tr>-->
+    <!--<th:block th:each="recipe : ${recipeList}">-->
+    <!--<th:block th:each="step : ${recipe.getRecipeSteps()}">-->
+    <!--<tr>-->
+    <!--<td align="center" class="cellpadding" th:text="${step}"></td>-->
+    <!--</tr>-->
+    <!--</th:block>-->
+    <!--</th:block>-->
+    <!--</table>-->
+    <!--</th:block>-->
+    <!--</table>-->
+    <!--<a class="links" href="/RecipePlanner.html">Add More Ingredients</a>-->
+    <!--</div>-->
+    <output th:text="${result}"/>
+    </body>
+    </html>

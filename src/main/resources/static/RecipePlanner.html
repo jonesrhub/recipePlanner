@@ -1,0 +1,39 @@
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Recipes</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<title>Recipe Planner</title>
+<body>
+<script>
+    function validateField() {
+        var field = document.forms["addRecipe"].value;
+        if(field == ""){
+            alert("Link must be entered to continue");
+            return false;
+        }
+    }
+</script>
+<div class="divtitle">
+    Recipe Planner
+</div>
+<div class="frontPageDiv">
+    <form class="toggle" name="addRecipe" action="/addRecipeViaLink" method="post" onsubmit="return validateField()">
+        <p>Link to Olive Magazine recipe:<p> <input type="text" name="link" size="35"/><p><input type="submit" value="Submit" /></p>
+    </form>
+    <form class="toggle" name="addRecipe" action="/getRecipeByTitle" method="get" onsubmit="return validateField()">
+        <p>View recipe by title <p><input type="text" name="name"/><p><input type="submit" value="Submit" /></p>
+    </form>
+</div>
+<!--if theres nothing to display dont display anything ( currently shopping list is displayed)-->
+<form class="divtitle" action="/displayAll" method="get">
+    <p><input class=button1" type="submit" value="Display All Recipes" /></p>
+</form>
+</body>
+</html>

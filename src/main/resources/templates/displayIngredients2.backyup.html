@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe Display</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
+</head>
+<body>
+
+<script th:inline="javascript">
+
+    function display (param) {
+        var input= $("#"+param);
+
+        if($(input).css('display') === 'none')
+        {
+            $(input).css('display', 'block');
+        } else {
+            $(input).css('display', 'none');
+        }
+
+    }
+
+</script>
+<!--<a class="links" href="/RecipePlanner.html" th:align="center">Add More Recipes</a>-->
+<div class="card-deck mb-3 text-center">
+    <div class="div" th:with="recipeList=${recipes.getListOfRecipes()}">
+        <div th:if="${!recipeList.isEmpty()}">
+            <th:block th:each="recipe , iterStatus : ${recipeList}">
+                <div class="card mb-4 box-shadow" th:with="currentRecipe=${recipe}" style="width: 18rem;">
+                    <section id="pricing-table1" class="pricing-table1">
+                        <div class="section-padding">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <h1 class="section-title"></h1>
+                                    </div>
+                                </div>
+                                <div class="row margin">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <ul class="list-group">
+                                            <li class="list-group-item plan-name basic-color-2" align="center" th:text="${recipe.recipeName}"></li>
+                                            <li class="list-group-item plan-prize basic-color-1">
+                                                <sup >
+                                                    <a th:id="${recipe.recipeName}" th:href="'javascript:display(\''+ ${iterStatus.index} +'\');'">
+                                                        <img class="recipeimg" th:src="@{${recipe.getImageAbsUrl()}}"/>
+                                                    </a>
+                                                </sup>
+                                            </li>
+                                            <div th:id="${iterStatus.index}" style="display:none;">
+                                                <form th:action="@{/recipes/removeRecipeById}" th:object="${recipe}" method="post">
+                                                    <input type="hidden" th:field="${recipe.recipeId}" />
+                                                    <button type="submit">Delete</button>
+                                                </form>
+                                                <li class="list-group-item plan-features">
+                                                    <th:block th:each="ingredient : ${recipe.getRecipeIngredientList().getIngredients()}">
+                                                        <div class="row">
+                                                            <div class="col-8 col-sm-6">
+                                                                <p th:text="${ingredient.itemName}"/>
+                                                            </div>
+                                                            <div class="col-4 col-sm-6">
+                                                                <i th:text="${ingredient.itemAmount}"/>
+                                                            </div>
+                                                        </div>
+                                                    </th:block>
+                                                </li>
+                                                <li class="list-group-item plan-features">
+                                                    <ul class="list-group">
+                                                        <div class="blog-details">
+                                                            <th:block th:each="step : ${recipe.getRecipeSteps()}">
+                                                                <li  th:text="${step}"></li>
+                                                            </th:block>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                            </div>
+                                        </ul><!-- //list group -->
+                                    </div><!-- //column -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="div" th:with="shoppingList=${shoppingList}">
+        <li class="list-group-item plan-features">
+            <h1 class="section-title">Shopping List</h1>
+            <th:block th:each="ingredient : ${shoppingList}">
+                <div class="row">
+                    <div class="col-2 col-sm-6">
+                        <i th:text="${ingredient.itemName}"/>
+                    </div>
+                    <div class="col-2">
+                        <i th:text="${ingredient.itemAmount}"/>
+                    </div>
+                </div>
+            </th:block>
+        </li>
+    </div>
+</div>
+</body>
+</html>

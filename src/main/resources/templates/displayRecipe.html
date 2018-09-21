@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<body>
+<div class="collapse" id="collapseExample">
+    <div th:if="${recipes != null}">
+        <div class="div" th:with="currRecipe=${recipes.returnRecipeByTitle(elementANme)}">
+            <div class="card card-body">
+                <table class="tableformat">
+                    <tr>
+                        <th class="rowpadding">Item</th>
+                        <th class="rowpadding">Amount</th>
+                    </tr>
+                    <th:block th:if="${currRecipe != null}">
+                        <th:block th:each="ingredient : ${currRecipe.getRecipeIngredientList().getIngredients()}">
+                            <tr>
+                                <td  align="center" class="cellpadding" th:text="${ingredient.itemName}"></td>
+                                <td  align="center" class="cellpadding" th:text="${ingredient.itemAmount}"></td>
+                            </tr>
+                            <table class="stepstableformat">
+                                <tr>
+                                    <th class="tableheadings">Steps</th>
+                                </tr>
+                                <th:block th:each="step : ${currRecipe.getRecipeSteps()}">
+                                    <tr>
+                                        <td align="center" class="cellpadding" th:text="${step}"></td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                        </th:block>
+                    </th:block>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
