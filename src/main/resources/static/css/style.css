@@ -1,0 +1,227 @@
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(235,205,219,1) 35%, rgba(255,158,0,0.9192051820728291) 100%);
+}
+
+.tableheadings {
+    text-align: center;
+}
+
+.rowpadding {
+    height: 5px;
+    text-align: center;
+    width: 10px;
+    padding: 6px;
+}
+
+
+.tableformat {
+    padding: 5%;
+    width: 40%;
+    float: left;
+    border: 4px #ffd6da;
+}
+
+.stepstableformat {
+    border: 4px #ffcef6;
+    width: 40%;
+    margin-right: 0%;
+    margin-left: auto;
+    float: right;
+}
+
+.th {
+    height: 30px;
+}
+
+.h2 {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-size: x-small;
+    color: #ffafc9;
+    padding-left: 2px;
+}
+
+.links {
+    position: absolute;
+    bottom: 10px;
+    background-color: #f44336;
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.div {
+}
+
+.recipeimg {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 300px; /* Set a small width */
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.grid-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2px 2px;
+    grid-template-areas: ". . .";
+    align: center;
+}
+
+.section-title {
+    text-align: center;
+    align-items:center;
+}
+.collapse { visibility: hidden; }
+.unhidden { visibility: visible; }
+
+
+.collapse { display: none; }
+.unhidden { display: block; }
+
+
+
+.main-content{
+    min-height: 330px;
+    background: #dbdfe5;
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 400px; /* Set a small width */
+    height: 250px;
+}
+
+.sidebar-content{
+    min-height: 150px;
+    margin-bottom: 30px;
+    background: #b4bac0;
+}
+
+.hide{
+    display:none;
+}
+
+
+.frontPageDiv {
+    align-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 150px;
+    margin-left: 150px;
+    font-family: "Lora", serif;
+    font-weight: 400;
+    font-size: 19px;
+}
+
+.divtitle {
+    align: center;
+    text-align: center;
+    font-family: "Lora", serif;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+body {
+    align-items: center;
+    line-height: 1.9;
+    color: #757575;
+}
+
+.toggle {
+    text-align: center;
+    font-family: "Lora", serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.9;
+    padding:20px;
+}
+
+.button {
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 21px;
+    text-align: center;
+}
+
+
+input[type="submit"] {
+    color:	black;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px #eee;
+    text-shadow:none;
+    padding: 5px 5px;
+    font-family: avante;
+}
+
+input[type="submit"] :hover {
+    color:	black;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    padding: 5px 5px;
+    font-family: avante;
+}
+
+.maincontent {
+    background: transparent;
+    border-color: #757575;
+    font-family: avante;
+    padding: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.card-deck mb-3 text-center {
+    align-items: center;
+    line-height: 1.9;
+    color: #757575;
+}
+
+.list-group-item plan-name basic-color-2 {
+    align-items: center;
+    line-height: 1.9;
+    background: transparent;
+}
+
+.list-group-item plan-prize basic-color-1 {
+    align-items: center;
+    line-height: 1.9;
+    background: transparent;
+}
+.header {
+    padding: 10px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.recipeclass {
+    align-items: center;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(235,205,219,1) 35%, rgba(255,158,0,0.9192051820728291) 100%);
+
+}
+
+.row {
+    text-align: center;
+}
+
+.item-text {
+    padding: 0px;
+}

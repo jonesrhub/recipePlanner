@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>JSP Page</title>
+</head>
+<body>
+<table>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Surname</th>
+    <th>DOB</th>
+
+    <th:block th:each="person : ${people}">
+        <tr>
+            <td th:text="${person.id}">...</td>
+            <td th:text="${person.firstName}">...</td>
+            <td th:text="${person.surname}">...</td>
+            <td th:text="${person.dob}">...</td>
+        </tr>
+    </th:block>
+</table>
+<output hidden="true" th:text="${result}"/>
+
+<a href="/index.html">Return Home</a>
+</body>
+</html>
